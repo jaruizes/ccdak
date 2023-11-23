@@ -29,6 +29,8 @@ cd kafka_2.13-3.6.0
 
 
 
+<br/>
+
 To start the environment we are going to need two terminals:
 
 
@@ -47,18 +49,18 @@ bin/zookeeper-server-start.sh config/zookeeper.properties
 bin/kafka-server-start.sh config/server.properties
 ```
 
-
+<br/>
 
 
 
 ### Zookeeper? Didn't it going to be removed?
 
-
+<br/>
 
 | Kafka 3.x can work without Zookeeper but is not production ready.<br />Zookeeper will be completely removed from Kafka with the release of Kafka 4.0 *(planned for April 2024)* |
 | ------------------------------------------------------------ |
 
-
+<br/>
 
 Zookeeper is used to track cluster state, membership, and leadership. That means:
 
@@ -74,7 +76,7 @@ So, what happens if we have just one Zookeeper and it dies? It's easy. Our clust
 
 
 
-
+<br/>
 
 ## Topics
 
@@ -84,19 +86,19 @@ Topics are divided in partitions. The minimum number of partitions is one.
 
 For instance, we can have the topic "Orders" in which we are going to produce new orders identified by an unique id. Let's see two possible scenarios:
 
-In the first one, we have configured just **<u>one partition</u>** in the topic:
+- In the first one, we have configured just **<u>one partition</u>** in the topic:
 
 ![topic_one_partition](img/topic_one_partition.jpg)
 
-In this topic, we can find the message associated to "order 1" in the offset 0, the one associated to "order 2" in the offset 1 and the one associated to the "order 3" in the offset 3. When a new message is produced and published to Kafka, it takes the latest offset of the unique partition
+​	In this topic, we can find the message associated to "order 1" in the offset 0, the one associated to "order 2" in the offset 1 and the one associated to 	the "order 3" in the offset 3. When a new message is produced and published to Kafka, it takes the latest offset of the unique partition
 
 
 
-In the second scenario, we are going to configure the topic "Orders" with **<u>two partitions</u>**:
+- In the second scenario, we are going to configure the topic "Orders" with **<u>two partitions</u>**:
 
 ![topic_two_partitions](img/topic_two_partitions.jpg)
 
-In this case, we can find the orders associated to an odd number in the partition 0 and the orders associated to an even number in the partition 1. So, when a new order is published, the message will be stored in a different partition depending of the id of the order.
+​	In this case, we can find the orders associated to an odd number in the partition 0 and the orders associated to an even number in the partition 1. So, when a new order is published, the message will be stored in a different partition depending of the id of the order.
 
 
 
